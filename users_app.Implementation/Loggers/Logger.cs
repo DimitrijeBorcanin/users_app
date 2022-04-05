@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,9 +11,10 @@ namespace users_app.Implementation.Loggers
 {
     public class Logger : IUseCaseLogger
     {
-        public void Log(IAppActor actor, IUseCase useCase, object request)
+        public async void Log(IAppActor actor, IUseCase useCase, object request)
         {
-            throw new NotImplementedException();
+            using StreamWriter file = new("Log.txt", append: true);
+            await file.WriteLineAsync($"{actor.Id}\t{useCase.Name}\t{DateTime.UtcNow}\t{JsonConvert.SerializeObject(request)}");
         }
     }
 }
