@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using users_app.Application;
@@ -29,14 +30,10 @@ namespace users_app.Implementation.Commands
 
         public string Name => "Edit User Command";
 
-        public List<int> AllowedRoles => new List<int> { 1, 2 };
+        public List<int> AllowedRoles => new List<int> { 1 };
 
         public void Execute(EditUserDto request)
         {
-            if (_actor.Id != request.Id || _actor.RoleId != 1)
-            {
-                throw new UnauthorizedAccessException();
-            }
 
             _val.ValidateAndThrow(request);
 
@@ -50,9 +47,23 @@ namespace users_app.Implementation.Commands
             user.FirstName = request.FirstName;
             user.LastName = request.LastName;
             user.Email = request.Email;
+            user.Password = GetMd5Hash(request.Password);
 
             user.ModifiedAt = DateTime.UtcNow;
             _con.SaveChanges();
+        }
+
+        public string GetMd5Hash(string input)
+        {
+            using MD5 md5Hash = MD5.Create();
+            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+            StringBuilder sBuilder = new StringBuilder();
+
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+            return sBuilder.ToString();
         }
     }
 }

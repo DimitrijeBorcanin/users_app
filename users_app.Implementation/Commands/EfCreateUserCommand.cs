@@ -29,7 +29,7 @@ namespace users_app.Implementation.Commands
 
         public string Name => "Create user command";
 
-        public List<int> AllowedRoles => new List<int> { 0, 1 };
+        public List<int> AllowedRoles => new List<int> { 1 };
 
         public void Execute(CreateUserDto request)
         {
@@ -37,6 +37,7 @@ namespace users_app.Implementation.Commands
 
             var user = new User
             {
+                Username = request.Username,
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 Email = request.Email,

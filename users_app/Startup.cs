@@ -39,6 +39,8 @@ namespace users_app
             services.AddTransient<IUseCaseLogger, Logger>();
             services.AddValidators();
 
+            services.AddTransient<IAppActor, FakeAdmin>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
