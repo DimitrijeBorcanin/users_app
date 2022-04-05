@@ -11,6 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using users_app.Api.Core;
+using users_app.Application;
+using users_app.DataAccess;
+using users_app.Implementation.Loggers;
 
 namespace users_app
 {
@@ -26,6 +30,14 @@ namespace users_app
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(this.GetType().Assembly);
+            services.AddTransient<UserContext>();
+            services.AddTransient<ExecutionAgent>();
+
+            services.AddUseCases();
+
+            services.AddTransient<IUseCaseLogger, Logger>();
+            services.AddValidators();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

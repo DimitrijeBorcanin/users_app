@@ -9,10 +9,4 @@
     <ProjectReference Include="..\users_app.Domain\users_app.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Commands\" />
-    <Folder Include="DTO\" />
-    <Folder Include="Searches\" />
-  </ItemGroup>
-
 </Project>
