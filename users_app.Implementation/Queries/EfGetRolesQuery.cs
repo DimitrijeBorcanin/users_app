@@ -9,6 +9,8 @@ using users_app.Application.DTO;
 using users_app.Application.Queries;
 using users_app.Application.Searches;
 using users_app.DataAccess;
+using users_app.Domain;
+using users_app.Implementation.Extensions;
 
 namespace users_app.Implementation.Queries
 {
@@ -29,21 +31,9 @@ namespace users_app.Implementation.Queries
 
         public PagedResponse<RoleDto> Execute(RoleSearchDto request)
         {
-            var query = _con.Users.Include(x => x.Role)
-                .Where(x => x.IsDeleted == false)
-                .AsQueryable();
+            var query = _con.Roles.AsQueryable();
 
-            var offset = request.PerPage * (request.Page - 1);
-
-            var res = new PagedResponse<RoleDto>
-            {
-                PerPage = request.PerPage,
-                TotalItems = query.Count(),
-                CurrentPage = request.Page,
-                Items = query.Skip(offset).Take(request.PerPage).Select(x => _mapper.Map<RoleDto>(x)).ToList()
-            };
-
-            return res;
+            return query.MakePaged<RoleDto, Role>(request, _mapper);
         }
     }
 }
