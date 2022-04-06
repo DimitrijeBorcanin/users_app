@@ -26,7 +26,7 @@ namespace users_app.Api.Controllers
 
         // GET: api/<RolesController>
         [HttpGet]
-        public IActionResult Get([FromQuery] RoleSearchDto search, IGetRolesQuery query)
+        public IActionResult Get([FromQuery] RoleSearchDto search, [FromServices] IGetRolesQuery query)
         {
             return Ok(_exec.ExecuteQuery(query, search));
         }

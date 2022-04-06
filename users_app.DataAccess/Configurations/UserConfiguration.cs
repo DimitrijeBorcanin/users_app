@@ -14,6 +14,7 @@ namespace users_app.DataAccess.Configurations
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.Property(x => x.Username).IsRequired();
+            builder.HasIndex(x => x.Username).IsUnique();
             builder.Property(x => x.FirstName).IsRequired();
             builder.Property(x => x.LastName).IsRequired();
             builder.Property(x => x.Email).IsRequired();

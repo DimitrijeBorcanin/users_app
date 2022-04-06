@@ -17,7 +17,15 @@ namespace users_app.Implementation.Validators
                 .NotEmpty()
                 .MinimumLength(4)
                 .MaximumLength(30)
-                .WithMessage("Username must be at least 4 and no more than 30 characters!");
+                .WithMessage("Username must be at least 4 and no more than 30 characters!")
+                .DependentRules(() =>
+                {
+                    RuleFor(x => x.Username).Must((user, username) =>
+                    {
+                        return !con.Users.Any(u => u.Username == username);
+                    })
+                    .WithMessage("This username is already taken by another user!");
+                });
 
             RuleFor(x => x.Password)
                 .NotEmpty()

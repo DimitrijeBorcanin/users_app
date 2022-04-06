@@ -20,6 +20,7 @@ namespace users_app.Api.Core
             services.AddTransient<IEditUserCommand, EfEditUserCommand>();
             services.AddTransient<IGetUserQuery, EfGetUserQuery>();
             services.AddTransient<IGetUsersQuery, EfGetUsersQuery>();
+            services.AddTransient<IGetRolesQuery, EfGetRolesQuery>();
         }
 
         public static void AddValidators(this IServiceCollection services)

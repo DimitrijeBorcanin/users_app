@@ -14,7 +14,7 @@ using users_app.Implementation.Extensions;
 
 namespace users_app.Implementation.Queries
 {
-    class EfGetRolesQuery : IGetRolesQuery
+    public class EfGetRolesQuery : IGetRolesQuery
     {
         private readonly UserContext _con;
         private readonly IMapper _mapper;

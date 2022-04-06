@@ -16,14 +16,14 @@ namespace users_app.DataAccess
             modelBuilder.ApplyConfiguration(new RoleConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
 
-            modelBuilder.Entity<Role>().HasData(
-                    new Role
-                    {
-                        Name = "Admin"
-                    },
-                    new Role{
-                        Name = "User"
-                    });
+            //modelBuilder.Entity<Role>().HasData(
+            //        new Role
+            //        {
+            //            Name = "Admin"
+            //        },
+            //        new Role{
+            //            Name = "User"
+            //        });
         }
 
         public override int SaveChanges()

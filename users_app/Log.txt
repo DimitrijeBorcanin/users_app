@@ -1,2 +1,8 @@
 1	Get User Query	5.4.2022. 13:04:00	1
 1	Get User Query	5.4.2022. 13:04:43	1
+1	Get users query	6.4.2022. 07:14:50	{"Keyword":null,"DateFrom":"0001-01-01T00:00:00","DateTo":"0001-01-01T00:00:00","PerPage":10,"Page":1}
+1	Get roles query	6.4.2022. 07:18:09	{"PerPage":10,"Page":1}
+1	Get roles query	6.4.2022. 07:19:07	{"PerPage":10,"Page":1}
+1	Get User Query	6.4.2022. 07:19:37	1
+1	Get User Query	6.4.2022. 07:21:38	1
+1	Get users query	6.4.2022. 07:21:47	{"Keyword":null,"DateFrom":"0001-01-01T00:00:00","DateTo":"0001-01-01T00:00:00","PerPage":10,"Page":1}

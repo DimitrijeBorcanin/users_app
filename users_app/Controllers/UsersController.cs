@@ -28,7 +28,7 @@ namespace users_app.Api.Controllers
 
         // GET: api/<UsersController>
         [HttpGet]
-        public IActionResult Get([FromQuery] UserSearchDto search, IGetUsersQuery query)
+        public IActionResult Get([FromQuery] UserSearchDto search, [FromServices] IGetUsersQuery query)
         {
             return Ok(_exec.ExecuteQuery(query, search));
         }
